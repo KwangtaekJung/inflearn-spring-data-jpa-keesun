@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 @Getter @Setter
@@ -19,6 +18,8 @@ public class Comment {
     private String title;
 
     private String comment;
+
+    private Integer likeCount;
 
     @ManyToOne
     private Post post;
