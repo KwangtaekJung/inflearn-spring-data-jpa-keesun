@@ -18,19 +18,19 @@ public class AppRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        Account account = new Account();
-        account.setUsername("jung");
-        account.setPassword("spring");
-
-        Study study = new Study();
-        study.setName("Spring Data JPA");
-
-//        account.getStudies().add(study); // 없어도 되지만 객체 관계를 생각했을 때 같이 설정함.
-        study.setOwner(account);  // 주인쪽에 설정해줘야 함.
-//        account.addStudy(study);
+//        Post post = new Post();
+//        post.setTitle("Spring Data JPA...");
+//
+//        Comment comment = new Comment();
+//        comment.setComment("빨리 보고 싶어요.");
+//        post.addComment(comment);
+//
+//        Comment comment1 = new Comment();
+//        comment1.setComment("곧 보여드릴게요.");
+//        post.addComment(comment1);
 
         Session session = entityManager.unwrap(Session.class);
-        session.save(account);
-        session.save(study);
+        Post post = session.get(Post.class, 1l);
+        session.delete(post);
     }
 }
