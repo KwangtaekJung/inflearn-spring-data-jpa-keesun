@@ -19,16 +19,18 @@ public class AppRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         Account account = new Account();
-        account.setUsername("keesun");
-        account.setPassword("jpa");
+        account.setUsername("jung");
+        account.setPassword("spring");
 
-        entityManager.persist(account);
+        Study study = new Study();
+        study.setName("Spring Data JPA");
 
-        // Hibernate API(ex Session)도 직접 사용 가능함.
-        Account account1 = new Account();
-        account1.setUsername("jung");
-        account1.setPassword("spring");
+//        account.getStudies().add(study); // 없어도 되지만 객체 관계를 생각했을 때 같이 설정함.
+        study.setOwner(account);  // 주인쪽에 설정해줘야 함.
+//        account.addStudy(study);
+
         Session session = entityManager.unwrap(Session.class);
-        session.save(account1);
+        session.save(account);
+        session.save(study);
     }
 }

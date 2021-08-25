@@ -3,17 +3,13 @@ package com.example.inflearnspringdatajpakeesun;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Transient;
-import java.util.Date;
+import javax.persistence.OneToMany;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter @Setter
@@ -27,23 +23,17 @@ public class Account {
 
     private String password;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date created = new Date();
+    @OneToMany
+    private Set<Study> studies = new HashSet<>();
 
-    private String yes;
+    //convenient method
+    public void addStudy(Study study) {
+        this.getStudies().add(study);
+        study.setOwner(this);
+    }
 
-    @Transient
-    private String no;
-
-    @Embedded
-    private Address address;
-
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "street", column = @Column(name = "office_street")),
-            @AttributeOverride(name = "city", column = @Column(name = "office_city")),
-            @AttributeOverride(name = "state", column = @Column(name = "office_state")),
-            @AttributeOverride(name = "zipCode", column = @Column(name = "office_zipCode"))
-    })
-    private Address officeAddress;
+    public void removeStudy(Study study) {
+        this.getStudies().remove(study);
+        study.setOwner(null);
+    }
 }
