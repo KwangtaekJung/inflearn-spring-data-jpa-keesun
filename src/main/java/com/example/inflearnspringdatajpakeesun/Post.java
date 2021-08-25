@@ -2,6 +2,7 @@ package com.example.inflearnspringdatajpakeesun;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -13,6 +14,7 @@ import java.util.Set;
 
 @Entity
 @Getter @Setter
+@ToString(exclude = "comments")
 public class Post {
 
     @Id @GeneratedValue
