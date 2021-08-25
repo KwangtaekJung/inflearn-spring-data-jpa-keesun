@@ -19,7 +19,8 @@ public class AppRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        postRepository.findAll().forEach(System.out::println);
+//        postRepository.findAll().forEach(System.out::println);
+        postRepository.findById(4l);
 
         System.out.println("=====================");
         System.out.println(keesun.getName());
