@@ -4,17 +4,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.stream.Stream;
 
-//@RepositoryDefinition(domainClass = Comment.class, idClass = Long.class)
 public interface CommentRepository extends MyRepository<Comment, Long> {
 
-    Comment save(Comment comment);
+    List<Comment> findByCommentContains(String keyword);
 
-    List<Comment> findAll();
+    List<Comment> findByCommentContainsIgnoreCaseAndLikeCountGreaterThan(String keyword, int likeCount);
 
-    List<Comment> findByCommentContains(String string);
+    List<Comment> findByCommentContainsIgnoreCaseOrderByLikeCountDesc(String keyword);
 
-    Page<Comment> findByLikeCountGreaterThanAndPost(int likeCount, Post post, Pageable pageable);
+    Page<Comment> findByCommentContainsIgnoreCase(String keyword, Pageable pageable);
 
-    long count();
+    Stream<Comment> findStreamByCommentContainsIgnoreCase(String keyword, Pageable pageable);
 }
