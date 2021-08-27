@@ -1,4 +1,4 @@
-package com.example.inflearnspringdatajpakeesun.old;
+package com.example.inflearnspringdatajpakeesun.account;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,17 +6,17 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Entity
 @Getter @Setter
-public class Study {
+public class Account {
 
     @Id @GeneratedValue
     private Long id;
 
-    private String name;
+    private String username;
 
-    @ManyToOne
-    private Account owner;
+    private String firstName;
+
+    private String lastName;
 }
