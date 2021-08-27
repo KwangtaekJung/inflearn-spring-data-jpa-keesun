@@ -1,4 +1,4 @@
-package com.example.inflearnspringdatajpakeesun;
+package com.example.inflearnspringdatajpakeesun.old;
 
 public class Keesun {
 

@@ -1,4 +1,4 @@
-package com.example.inflearnspringdatajpakeesun;
+package com.example.inflearnspringdatajpakeesun.old;
 
 import com.example.inflearnspringdatajpakeesun.post.Post;
 import lombok.Getter;

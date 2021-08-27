@@ -1,6 +1,6 @@
 package com.example.inflearnspringdatajpakeesun.post;
 
-import com.example.inflearnspringdatajpakeesun.Comment;
+import com.example.inflearnspringdatajpakeesun.old.Comment;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

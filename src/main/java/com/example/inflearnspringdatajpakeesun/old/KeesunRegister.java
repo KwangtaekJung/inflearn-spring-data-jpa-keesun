@@ -1,4 +1,4 @@
-package com.example.inflearnspringdatajpakeesun;
+package com.example.inflearnspringdatajpakeesun.old;
 
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanNameGenerator;

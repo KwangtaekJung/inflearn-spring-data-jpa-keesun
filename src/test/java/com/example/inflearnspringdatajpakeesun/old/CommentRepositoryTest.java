@@ -1,4 +1,4 @@
-package com.example.inflearnspringdatajpakeesun;
+package com.example.inflearnspringdatajpakeesun.old;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

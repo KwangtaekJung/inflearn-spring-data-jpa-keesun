@@ -1,4 +1,4 @@
-package com.example.inflearnspringdatajpakeesun;
+package com.example.inflearnspringdatajpakeesun.old;
 
 import com.example.inflearnspringdatajpakeesun.post.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;

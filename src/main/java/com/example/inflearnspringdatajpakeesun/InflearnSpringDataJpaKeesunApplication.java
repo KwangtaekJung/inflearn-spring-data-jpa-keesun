@@ -1,5 +1,6 @@
 package com.example.inflearnspringdatajpakeesun;
 
+import com.example.inflearnspringdatajpakeesun.old.KeesunRegister;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
@@ -10,11 +11,11 @@ import org.springframework.data.repository.query.QueryLookupStrategy;
 @Import(KeesunRegister.class)
 @EnableJpaRepositories(
 		queryLookupStrategy = QueryLookupStrategy.Key.CREATE_IF_NOT_FOUND,
-		repositoryImplementationPostfix = "Impl")
+		repositoryImplementationPostfix = "Impl",
+		repositoryBaseClass = SimpleMyRepository.class)
 public class InflearnSpringDataJpaKeesunApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(InflearnSpringDataJpaKeesunApplication.class, args);
 	}
-
 }
