@@ -1,5 +1,6 @@
 package com.example.inflearnspringdatajpakeesun;
 
+import com.example.inflearnspringdatajpakeesun.post.Post;
 import lombok.Getter;
 import lombok.Setter;
 
