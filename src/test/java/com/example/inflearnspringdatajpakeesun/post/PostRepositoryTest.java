@@ -41,4 +41,26 @@ class PostRepositoryTest {
         List<Post> all = postRepository.findAll();
         Assertions.assertThat(all.size()).isEqualTo(1);
     }
+
+    @Test
+    public void findByTitleStartsWith() {
+        savePost();
+
+        List<Post> all = postRepository.findByTitleStartsWith("Spring");
+        Assertions.assertThat(all.size()).isEqualTo(1);
+    }
+
+    @Test
+    public void findByTitleWithNamedQuery() {
+        savePost();
+
+        List<Post> all = postRepository.findByTitleWithNamedQuery("Spring Data JPA");
+        Assertions.assertThat(all.size()).isEqualTo(1);
+    }
+
+    private void savePost() {
+        Post post = new Post();
+        post.setTitle("Spring Data JPA");
+        postRepository.save(post);
+    }
 }
