@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.jpa.domain.JpaSort;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -56,6 +57,14 @@ class PostRepositoryTest {
 
         List<Post> all = postRepository.findByTitleWithNamedQuery("Spring Data JPA");
         Assertions.assertThat(all.size()).isEqualTo(1);
+    }
+
+    @Test
+    public void findByTitle() {
+        savePost();
+
+        List<Post> posts = postRepository.findByTitle("Spring Data JPA", JpaSort.unsafe("LENGTH(title)"));
+        Assertions.assertThat(posts.size()).isEqualTo(1);
     }
 
     private void savePost() {
