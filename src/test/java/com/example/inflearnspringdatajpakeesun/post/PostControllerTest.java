@@ -34,9 +34,7 @@ class PostControllerTest {
 
     @Test
     public void getPosts() throws Exception {
-        Post post = new Post();
-        post.setTitle("jpa");
-        postRepository.save(post);
+        createPosts();
 
         mockMvc.perform(MockMvcRequestBuilders.get("/posts")
                         .param("page", "0")
@@ -46,5 +44,15 @@ class PostControllerTest {
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.content[0].title", Matchers.is("jpa")));
+    }
+
+    private void createPosts() {
+        int postsCount = 100;
+        while(postsCount > 0) {
+            Post post = new Post();
+            post.setTitle("jpa");
+            postRepository.save(post);
+            postsCount--;
+        }
     }
 }
