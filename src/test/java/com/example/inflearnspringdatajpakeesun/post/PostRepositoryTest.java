@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.JpaSort;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.Optional;
 
 @DataJpaTest
 class PostRepositoryTest {
@@ -67,9 +68,29 @@ class PostRepositoryTest {
         Assertions.assertThat(posts.size()).isEqualTo(1);
     }
 
-    private void savePost() {
+    @Test
+    public void updateTitle() {
+        Post post = savePost();
+
+        int update = postRepository.updateTitle("Hibernate", post.getId());
+        Assertions.assertThat(update).isEqualTo(1);
+
+        Optional<Post> byId = postRepository.findById(post.getId());
+        Assertions.assertThat(byId.get().getTitle()).isEqualTo("hibernate");
+    }
+
+    @Test
+    public void updateTitleWithDirtyCheck() {
+        Post post = savePost();
+        post.setTitle("Hibernate");
+
+        List<Post> all = postRepository.findAll();
+        Assertions.assertThat(all.get(0).getTitle()).isEqualTo("Hibernate");
+    }
+
+    private Post savePost() {
         Post post = new Post();
         post.setTitle("Spring Data JPA");
-        postRepository.save(post);
+        return postRepository.save(post);
     }
 }
