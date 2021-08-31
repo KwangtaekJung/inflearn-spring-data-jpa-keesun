@@ -2,9 +2,13 @@ package com.example.inflearnspringdatajpakeesun.post;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
-@DataJpaTest
+@SpringBootTest
+@Transactional
+@Rollback(value = false)
 class CommentRepositoryTest {
 
     @Autowired
@@ -35,5 +39,7 @@ class CommentRepositoryTest {
             System.out.println("================");
             System.out.println(c.getComment());
         });
+
+        savedComment.setUp(15);
     }
 }
